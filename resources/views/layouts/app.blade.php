@@ -8,7 +8,13 @@
     <title>Devstegram</title>
 
 
-    <!-- Styles --> @vite('resources/css/app.css')
+    <!-- Styles -->
+     @vite('resources/css/app.css')
+     @vite('resources/js/app.js')
+
+
+    @stack('style')
+
     <style>
 
     </style>
@@ -34,7 +40,7 @@
 
                 Crear
                 </a>
-                <a href="" class="font-bold text-gray-600 uppercase text-sm ">
+                <a href="{{route('posts.index',auth()->user()->username)}}" class="font-bold text-gray-600 uppercase text-sm ">
 
                     Hola : <span class="text-sm font-normal  lowercase text-gray-400 "> {{ auth()->user()->name }}</span>
                 </a>
