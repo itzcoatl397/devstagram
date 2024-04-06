@@ -21,7 +21,7 @@ Crea una nueva Publicacion
 
     </div>
     <div class="md:w-1/2 bg-white p-10 rounded-lg mt-10 md:mt-0 ">
-        <form action="{{ route('register') }}" method="POST">
+        <form action="{{ route('posts.store') }}" method="POST">
             @csrf
 
             <div class="mb-5">
@@ -37,8 +37,19 @@ Crea una nueva Publicacion
 
             <div class="mb-5">
                 <label for="description" id="description" class="mb-2 block uppercase text-gray-500 font-bold">Descripcioón</label>
-                <textarea type="text" id="description" name="description" placeholder="Descripcion de  la  publicacion" class="w-full border p-3  rounded-lg placeholder:ml-4 @error('name') border-red-600 @enderror" >{{ old('description') }} </textarea>
+                <textarea type="text" id="description" name="description" placeholder="Descripcion de  la  publicacion" class="w-full border p-3  rounded-lg placeholder:ml-4 @error('description') border-red-600 @enderror" >{{ old('description') }} </textarea>
                 @error('description')
+                <p class="p-3 shadow-lg bg-red-600 text-white w-full mt-3 b-5 text-sm my-2 font-bold uppercase text-center">
+                    {{ $message }}
+                </p>
+                @enderror
+
+            </div>
+
+            <div class="mb-5">
+
+                <input type="hidden" id="imagen" name="imagen" placeholder="Titulo de la  publicacion" class="w-full border p-3  rounded-lg placeholder:ml-4 @error('imagen') border-red-600 @enderror" value={{ old('imagen') }}>
+                @error('imagen')
                 <p class="p-3 shadow-lg bg-red-600 text-white w-full mt-3 b-5 text-sm my-2 font-bold uppercase text-center">
                     {{ $message }}
                 </p>

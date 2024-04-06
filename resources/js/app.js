@@ -3,35 +3,52 @@ import Dropzone from "dropzone";
 Dropzone.autoDiscover = false;
 
 
-const dropzone = new Dropzone('#dropzone',{
-    dictDefaultMessage:'Sube tu imagen aqui ',
+const dropzone = new Dropzone('#dropzone', {
+    dictDefaultMessage: 'Sube tu imagen aqui ',
 
-    acceptedFiles:".svg, .jpe,.png, .gif, .jpg",
-    addRemoveLinks:true,
-    dictRemoveFile:"Borrar Archivo",
-     maxFiles:10,
-     uploadMultiple:false
+    acceptedFiles: ".svg, .jpe,.png, .gif, .jpg",
+    addRemoveLinks: true,
+    dictRemoveFile: "Borrar Archivo",
+    maxFiles: 10,
+    uploadMultiple: false,
+    init: function () {
+
+        if (document.querySelector('[name="imagen"]').value.trim()) {
+
+            const imagen_publicada = {}
+            imagen_publicada.size = 12345;
+            imagen_publicada.name = document.querySelector('[name="imagen"]').value;
+
+            this.options.addedfile.call(this, imagen_publicada)
+            this.options.thumbnail.call(this, imagen_publicada, `/uploads/${imagen_publicada.name}`)
+
+            imagen_publicada.previewElement.classList.add('dz-success', 'dz-complete')
+
+
+        }
+
+    }
 })
 
-dropzone.on('sending',function (file,xhr,formData){
-    console.log(formData);
+
+
+
+dropzone.on('success', function (file, response) {
+
+
+    document.querySelector('[name="imagen"]').value = response.imagen;
+
+
 
 })
 
 
-dropzone.on('success',function (file,response){
-    console.log(response);
-
-})
-
-dropzone.on('error',function (file,message){
-    console.log();
-
-})
 
 
-dropzone.on('removedfile',function (){
-    console.log("elimnado");
+dropzone.on('removedfile', function () {
+    document.querySelector('[name="imagen"]').value = ""
+
+
 
 })
 
