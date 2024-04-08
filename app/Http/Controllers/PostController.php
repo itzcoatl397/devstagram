@@ -11,7 +11,13 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['show','index']);
+    }
+    public function create()
+
+    {
+
+        return view('posts.create');
     }
 
     public function index(User $user)
@@ -19,8 +25,8 @@ class PostController extends Controller
     {
 
 
-        $post = Post::where('user_id', $user->id)->get();
-     
+        $post = Post::where('user_id', $user->id)->paginate(10);
+
         return view('dashboard', [
             'user' => $user,
             'posts'=>$post,
@@ -44,7 +50,7 @@ class PostController extends Controller
 
     $request->user()->posts()->create([
         'titulo' =>$request->titulo,
-        'description' =>$request->titulo,
+        'description' =>$request->description,
         'imagen' =>$request->imagen,
         'user_id' =>auth()->user()->id
     ]);
@@ -55,10 +61,19 @@ class PostController extends Controller
 
     }
 
-    public function create()
+    public function show(User $user,Post $post){
 
-    {
 
-        return view('posts.create');
+
+
+        return view('posts.show',[
+            'post'=>$post
+
+
+        ]);
+
     }
+
+
+
 }

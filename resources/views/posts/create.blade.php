@@ -8,7 +8,7 @@ Crea una nueva Publicacion
 @push('style')
 
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 @endpush
 @section('contenido')
@@ -36,7 +36,7 @@ Crea una nueva Publicacion
             </div>
 
             <div class="mb-5">
-                <label for="description" id="description" class="mb-2 block uppercase text-gray-500 font-bold">Descripcioón</label>
+                <label for="description" id="description" class="mb-2 block uppercase text-gray-500 font-bold">Descripción</label>
                 <textarea type="text" id="description" name="description" placeholder="Descripcion de  la  publicacion" class="w-full border p-3  rounded-lg placeholder:ml-4 @error('description') border-red-600 @enderror" >{{ old('description') }} </textarea>
                 @error('description')
                 <p class="p-3 shadow-lg bg-red-600 text-white w-full mt-3 b-5 text-sm my-2 font-bold uppercase text-center">

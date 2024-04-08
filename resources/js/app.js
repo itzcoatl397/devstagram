@@ -1,5 +1,7 @@
 import Dropzone from "dropzone";
 
+import  Toastify from 'toastify-js'
+
 Dropzone.autoDiscover = false;
 
 
@@ -38,6 +40,22 @@ dropzone.on('success', function (file, response) {
 
     document.querySelector('[name="imagen"]').value = response.imagen;
 
+    Toastify({
+
+        text: "Imagen Subida Con exito",
+
+        duration: 3000,
+        gravity:"top",
+
+        style:{
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+
+
+
+        }).showToast();
+
+
 
 
 })
@@ -47,6 +65,22 @@ dropzone.on('success', function (file, response) {
 
 dropzone.on('removedfile', function () {
     document.querySelector('[name="imagen"]').value = ""
+    Toastify({
+
+        text: "Eliminado Con exito",
+
+        duration: 1000,
+        gravity:"top",
+
+        style:{
+            background: "rgb(206,23,26)",
+            background: "linear-gradient(90deg, rgba(206,23,26,1) 91%, rgba(226,25,25,1) 100%)"
+        }
+
+
+
+        }).showToast();
+
 
 
 

@@ -15,7 +15,7 @@ Perfil : {{ $user->username }}
 
             <p class="text-sm text-gray-800 mb-3 font-bold mt-5">0 <span>Seguidores</span></p>
             <p class="text-sm text-gray-800 mb-3 font-bold mt-3">0 <span>Siguiendo</span></p>
-            <p class="text-sm text-gray-800 mb-3 font-bold mt-3">0 <span>Post</span></p>
+            <p class="text-sm text-gray-800 mb-3 font-bold mt-3">{{ $posts->count() }} <span>Posts</span></p>
 
 
         </div>
@@ -30,7 +30,7 @@ Perfil : {{ $user->username }}
         @foreach ($posts as $post)
 
         <div>
-            <a href="">
+            <a href="{{route('posts.show',['post'=>$post,'user'=>$user])}}">
                 <img src="{{asset('uploads').'/'. $post->imagen}}" alt="imegens">
             </a>
 
@@ -38,6 +38,10 @@ Perfil : {{ $user->username }}
 
         @endforeach
 
+    </div>
+
+    <div class="mt-10 ">
+        {{ $posts->links('pagination::tailwind') }}
     </div>
 
     @else
