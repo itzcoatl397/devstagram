@@ -11,7 +11,7 @@
 
 @section('contenido')
 
-<div class="container mx-auto flex">
+<div class="container mx-auto md:flex">
 
     <div class="md:w-1/2">
         <img src="{{asset('uploads/').'/'.$post->imagen}}" alt="{{$post->titulo}}">
@@ -39,10 +39,19 @@
 
 
             <p class="text-xl font-bold text-center mb-4">Agrega un Nuevo Comentario</p>
+            @if (session('mensaje'))
+
+            <div class="w-full bg-green-600 text-white p-5 text-center">
+
+                <p class="font-black uppercase" >{{session('mensaje')}}</p>
+            </div>
+
+
+            @endif
 
             <form action="{{route('comentarios.store',[
             'post'=>$post,
-            'user' =>$post->user
+            'user' =>$user
 
             ])}}" method="post">
             @csrf
