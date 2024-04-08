@@ -41,8 +41,7 @@
             <p class="text-xl font-bold text-center mb-4">Agrega un Nuevo Comentario</p>
             @if (session('mensaje'))
 
-            <div class="w-full bg-green-600 text-white p-5 text-center">
-
+            <div class="w-full bg-green-600 text-white p-2 rounded-lg  mb-5 shadow-slate-800 text-center">
                 <p class="font-black uppercase" >{{session('mensaje')}}</p>
             </div>
 
@@ -74,9 +73,10 @@
             </form>
             @endauth
 
-            @guest
-                Tus c
-            @endguest
+         <div>
+        
+
+         </div>
 
         </div>
 
